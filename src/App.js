@@ -1,35 +1,35 @@
 import React from "react";
 
-
 class App extends React.Component{
-    constructor(props){
-        super(props);
-        // console.log('my name is ctor');
-    }
-
     state = {
-        count : 0,
+        isLoading: true,
+        movies: [],
+    };
+
+    /*
+    LoadingRender(loading){
+        return(
+            <div>
+                {loading? "HELLO" : "WORLD"}
+            </div>
+        )
+    };
+    */
+
+    componentDidMount(){
+        setTimeout(()=>{
+            this.setState({isLoading: false});
+        }, 5000); // 5sec
+        /*
+        영화 앱을 로딩하는 기능을 넣는다.
+        */
     }
-
-    add = ()=>{
-        this.setState(current=>({
-            count : current.count + 1,
-        }))
-    };
-
-    minus = ()=>{
-        this.setState(current=>({
-            count : current.count - 1,
-        }))
-    };
-
+    
     render() {
-        // console.log('My name is render')
+        const {isLoading} = this.state;
         return (
             <div>
-                <h1>The number is: {this.state.count} </h1>
-                <button onClick={this.add}> Add </button>
-                <button onClick={this.minus}> Minus </button>
+                {isLoading? "Loading... " : "We are ready."}
             </div>
         );
     }       
